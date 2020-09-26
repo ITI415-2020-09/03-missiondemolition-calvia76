@@ -25,11 +25,29 @@ public class FollowCam : MonoBehaviour
     }
     void FixedUpdate() //fixedupdate used bc PhysX engine is used, syncs with this function
     {
-        if (POI == null) return; 
+        Vector3 destination;
 
-        /*gets position of POI
-        camera is moved to pos of POI, except z position, set to camZ*/
-        Vector3 destination = POI.transform.position;
+        if (POI == null) 
+        {
+            destination = Vector3.zero;
+        }else
+        {
+            destination = POI.transform.position;
+
+            if (POI.tag == "Projectile")
+            {
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    POI = null;
+                    return;
+                }
+            }
+        }
+    
+        
+        
+        //camera is moved to pos of POI, except z position, set to camZ*/
+        
 
         //limit x y to min values
         //MathF.Max ensures cam never moves in negative direction
