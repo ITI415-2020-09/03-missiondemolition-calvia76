@@ -12,17 +12,17 @@ public class Cloud : MonoBehaviour
     public int numSphereMax = 10;
 
     //Max distance +- that CloudSphere could be from center of the cloud per dimension
-    public Vector3 sphereOffsetScale = new Vector3(5, 2, 1);
+    public Vector3 sphereOffsetScale = new Vector3(4, 2, 1);
 
     //ranged in scales per dimension: default setting makes wider than tall
-    public Vector2 sphereScaleRangeX = new Vector2(4, 8);
-    public Vector2 sphereScaleRangeY = new Vector2(3, 4);
-    public Vector2 sphereScaleRangeZ = new Vector2(2, 4);
+    public Vector2 sphereScaleRangeX = new Vector2(1, 4);
+    public Vector2 sphereScaleRangeY = new Vector2(1, 3);
+    public Vector2 sphereScaleRangeZ = new Vector2(1, 3);
 
     /*@ end of Start(), each CloudSphere is scaled down in Y dim based on distance from
      center in X dim, making clouds taper at L & R extents
     *ScaleMin is lowest Y scale allowable in this instance*/
-    public float scaleYMin = 2f;
+    public float scaleYMin = 1.5f;
 
     //holds reference to all CloudSpheres instantiated by Cloud 
     private List<GameObject> spheres;
@@ -68,10 +68,10 @@ public class Cloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+       /* if (Input.GetKeyDown(KeyCode.Space))
         {
             Restart();
-        }
+        }*/
     }
     void Restart()
     {
