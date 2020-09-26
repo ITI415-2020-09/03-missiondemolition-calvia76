@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 //SetActive method on GameObj tells game whether or not to ignore them
 
-public class Slingshot : MonoBehaviour
-    
+public class Slingshot : MonoBehaviour { 
 
-{   //Creates header in the inspector view of script
+
+    static private Slingshot S;
+
+  //Creates header in the inspector view of script
     [Header("Set In Inspector")]
     public GameObject prefabProjectile;
     public float velocityMult = 8f;
@@ -19,8 +22,20 @@ public class Slingshot : MonoBehaviour
     public bool         aimingMode;
     private Rigidbody   projectileRigidbody;
 
-    private void Awake()
-    {   //transform.Find searches for a child of Slingshot named LP and returns
+    static public Vector3 LAUNCH_POS
+    {
+        get
+        {
+        if (S == null) return Vector3.zero;
+        return S.launchPos;
+
+        }
+    }
+
+    void Awake()
+    {
+        S = this;
+        //transform.Find searches for a child of Slingshot named LP and returns
         //its transform. 
         Transform launchPointTrans = transform.Find("LaunchPoint");
         //gets gameobj associated with Transform and assigns to game obj field 'launchPoint'
