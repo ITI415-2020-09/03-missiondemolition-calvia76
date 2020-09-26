@@ -97,6 +97,10 @@ public class Slingshot : MonoBehaviour {
             //mouse has been released
             aimingMode = false;
 
+            FollowCam.POI = projectile;
+            projectile = null;
+            MissionDemolition.shotsFired();
+            ProjectileLine.S.poi = projectile;
             /*setting projectile to kinematic gives projectile physics properties,
             allowing it to move with respect to velocity and gravity*/
             projectileRigidbody.isKinematic = false;

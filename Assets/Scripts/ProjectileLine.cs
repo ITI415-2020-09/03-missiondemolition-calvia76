@@ -8,6 +8,7 @@ using UnityEngine.WSA;
 public class ProjectileLine : MonoBehaviour
 {
     static public ProjectileLine S;
+
     [Header("Set in Inspector")]
     public float minDist = 0.1f;
 
@@ -25,14 +26,11 @@ public class ProjectileLine : MonoBehaviour
 
         points = new List<Vector3>();
     }
-    public GameObject poi
-    {
-        get
-        {
+    public GameObject poi{
+        get{
             return (_poi);
         }
-        set
-        {
+        set{
             _poi = value;
             if(_poi != null)
             {
@@ -89,18 +87,12 @@ public class ProjectileLine : MonoBehaviour
             return (points[points.Count - 1]);
         }
     }
-    void FixedUpdate()
-    {
-        if(poi == null)
-        {
-            if(FollowCam.POI != null)
-            {
-                if(FollowCam.POI.tag == "Projectile")
-                {
+    void FixedUpdate(){
+        if (poi == null){
+            if (FollowCam.POI != null){
+                if (FollowCam.POI.tag == "Projectile"){
                     poi = FollowCam.POI;
-                }
-                else
-                {
+                }else{
                     return;
                 }
             }
