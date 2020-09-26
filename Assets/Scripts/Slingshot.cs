@@ -66,6 +66,7 @@ public class Slingshot : MonoBehaviour
 
         //Find the delta from the LaunchPos to the mousePos3D
         Vector3 mouseDelta = mousePos3D - launchPos;
+
         //Limit mouseDelta to the radius of the Slingshot SphereCollider
         float maxMagnitude = this.GetComponent<SphereCollider>().radius;
         if(mouseDelta.magnitude> maxMagnitude)
@@ -80,15 +81,22 @@ public class Slingshot : MonoBehaviour
         {
             //mouse has been released
             aimingMode = false;
-            //setting projectile to kinematic gives projectile physics properties,
-            //allowing it to move with respect to velocity and gravity
+
+            /*setting projectile to kinematic gives projectile physics properties,
+            allowing it to move with respect to velocity and gravity*/
             projectileRigidbody.isKinematic = false;
+
             //rigidbody of projectile given velocity proportional to distance from launchPos
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
-            //sets to null to allow for another instance of projectile to be created
-            //once the slingshot is fired, allowing another shot
+
+            /* sets static public field FollowCam.POI to be newly fired projectile*/
+            FollowCam.POI = projectile;
+
+            /*sets to null to allow for another instance of projectile to be created
+            once the slingshot is fired, allowing another shot*/
             projectile = null;
         }
+        
     }
 
 }
